@@ -27,7 +27,7 @@ $ venv/scripts/activate  # ou plus simplement : deactivate
 Flask est un micro-framework web écrit en Python.
 
 #def un **framework** (ou cadre de travail) est une structure logicielle offrant un ensemble de composants réutilisables, d'outils et de normes, qui sert de squelette pour développer de nouvelles applications. 
-
+**Rem** : c'est un peu comme une boîte à outils ! Il existe des frameworks pour le développement d'applications réseau; d'autre pour le développement de sites web; des frameworks pour tel ou tel langage (Java, Python,...)
 ## Pourquoi Flask ?
 Il existe de nombreux frameworks pour le développement d'applications web !
 Notre choix s'est porté sur Flask pour les raisons suivantes :

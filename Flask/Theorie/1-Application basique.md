@@ -24,7 +24,7 @@ Exemples :
 - https://www.wikifin.be/fr/recherche?sépargne
 
 
-#def une URL (Uniform Resource Locator) est une chaîne de caractères **unique** qui sert à localiser une ressource (page web, fichier, image,...) sur internet.
+#def une URL (Uniform Resource Locator) est une chaîne de caractères **unique** qui sert à localiser une ressource (page web, fichier, image,...).
 ![[url_anatomy.png]]
 
 

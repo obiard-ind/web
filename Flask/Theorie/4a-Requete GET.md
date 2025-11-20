@@ -2,7 +2,7 @@
 Les *requêtes HTTP* `GET` sont utilisées pour demander une ressource au serveur.
 
 **Limitations**
-- Sur la longeur : maximum 2048 caractères
+- Sur la longueur : maximum 2048 caractères
 - Sur le type de données : seuls les caractères ASCII sont autorisés.
 
 **Transmission**
@@ -31,7 +31,7 @@ Une requête `GET` peut également être envoyée au serveur depuis un formulair
 </form>
 ```
 
-# Capture de requêtes GET par les serveur
+# Capture de requêtes GET par le serveur
 En Flask, les requêtes GET seront capturées par le serveur au niveau de la [[1-Application basique#Les routes url <-> vue|route]] !
 
 *Exemple de route capturant une requête GET*

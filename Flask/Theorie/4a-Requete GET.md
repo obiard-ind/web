@@ -1,9 +1,12 @@
-# Envoi de requêtes GET depuis le navigateur
-Les *requêtes HTTP* `GET` sont utilisées pour demander une ressource au serveur.
+# Envoi de requêtes `GET` depuis le navigateur
+Les *requêtes HTTP* `GET` sont utilisées pour **demander une ressource** au serveur.
 
 **Limitations**
-- Sur la longueur : maximum 2048 caractères
+- Sur la taille : maximum 2048 caractères
 - Sur le type de données : seuls les caractères ASCII sont autorisés.
+- Pas de `body` : les requêtes `GET` ne possédant pas de corps de message, toutes les informations sont transmises sous forme de paires `clé=valeur` via l'URL.
+- Sécurité : nulle (transmission via l'URL)
+- Historique : visible depuis le navigateur (cache, bookmark)
 
 **Transmission**
 Ce type de requête peut être adressée au serveur :
@@ -40,16 +43,17 @@ En Flask, les requêtes GET seront capturées par le serveur au niveau de la [[1
 def liste_taches():
     username =  request.args.get("username")
     if username:
+        # Traitement des données... 
         return f"Bonjour {username}"
-    else:
-        return render_template('afficher_formulaire.html')
+    return render_template('afficher_formulaire.html')
 ```
 
 On notera dans cet exemple :
 - l'utilisation d'un nouveau paramètre `methods` dans la définition de la route.
   Celui-ci prend en argument une liste indiquant quels types de requêtes : `['GET']`,`['POST']`,`['GET','POST']` sont acceptées par cette route.  Ici, seules les requêtes `GET` le sont.
+  **Rem** : si aucune méthode n'est spécifiée; seules les requêtes `GET` sont acceptées par défaut !
 - comment nous pouvons récupérer la valeur d'un argument transmis via une requête `GET`.
-  Ceci se fait à l'aide de la méthode `requet.args.get("nom_argument")`, ou *nom_argument* doit correspondre au nom de l'argument transmis via l'URL ou le formulaire.
+  Ceci se fait à l'aide de la méthode `request.args.get("nom_argument")`, ou *nom_argument* doit correspondre au nom de l'argument transmis via l'URL ou le formulaire.
 
 
 

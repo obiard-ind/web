@@ -50,7 +50,7 @@ Une *réponse HTTP* contient les informations structurées suivantes :
 	- `1xx` : Information
 	- `2xx` : Succès
 		- `200 OK` : la requête a été satisfaite / tout s'est bien passé !
-		- `3xx` : Redirection
+	- `3xx` : Redirection
 	- `4xx` : Erreur côté *client*
 		- `403 Forbidden` : la requête est valide; mais refusée par le serveur
 		- `404 Not Found` : la ressource demandée par le client n'a pu être trouvée !

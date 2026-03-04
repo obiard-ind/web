@@ -36,7 +36,11 @@ Comme évoqué dans le cours DB sur SQLite :
 ### Solution : l'objet `g` dans Flask
 L'objet `g`, dans le framework Flask :  est un objet propre à chaque requête HTTP en cours.
 Il sert de stockage *global* pour les données utilisées par la requête le temps que dure celle-ci.
+<<<<<<< HEAD:Theorie/5-SQLite3.md
+- Il est propre à chaque requête => 2 requêtes différentes ne partageront pas les mêmes valeurs.
+=======
 - Il est propre à chaque requête => 2 requêtes différentes ne partagerons pas les mêmes valeurs.
+>>>>>>> 9a0fb2fced1f76870938e6dd1870038b615dcc32:Flask/Theorie/5-SQLite3.md
 - Il est *global* au sein de la requête => les différentes fonctions (routes) pourront l'utiliser.
 - Il est détruit quand la requête se termine => il libère les ressource qu'il utilise.
 
@@ -73,16 +77,26 @@ cur = conn.cursor()
 ```
 ## 4. Exécuter notre requête
 Après avoir défini notre objet *curseur*, on peut à présent lui passer des requêtes à exécuter.
+<<<<<<< HEAD:Theorie/5-SQLite3.md
+L'exécution de notre requête se fait toujours en deux temps :
+=======
 L'exécution de notre requête se fait toujour en deux temps :
+>>>>>>> 9a0fb2fced1f76870938e6dd1870038b615dcc32:Flask/Theorie/5-SQLite3.md
 1. On passe des requêtes à notre objet **curseur** => méthode : `.execute()`
 2. On valide ces requêtes via l'objet **connexion** => méthode : `.commit()`
 **Rem** : on peut passer plusieurs requêtes à l'objet 'curseur'; avant de ne valider qu'une seule fois l'ensemble des requêtes passées.
 
 ```python
 try:
+<<<<<<< HEAD:Theorie/5-SQLite3.md
+    cur.execute("INSERT INTO utilisateurs (username,passowrd) VALUES (?,?)",(username,hashed_password))
+    conn.commit()
+except sqlite3.Error as e:
+=======
     cur.execute("INSERT INTO utilisateurs (nom,prenom) VALUES (?,?)",(nom,prenom))
     conn.commit()
 except:
+>>>>>>> 9a0fb2fced1f76870938e6dd1870038b615dcc32:Flask/Theorie/5-SQLite3.md
     conn.rollback()
 ```
 
@@ -92,13 +106,25 @@ except:
 ## Quelques remarques additionnelles 
 ### Champs de formulaire vides et valeur `NULL`
 Lors de la transmission des données d'un formulaire; il peut arriver que certains champs ne soient pas remplis par l'utilisateur.  La valeur extraite de ceux-ci est évaluée à la chaîne vide : `''`.
+<<<<<<< HEAD:Theorie/5-SQLite3.md
+Or, SQLite ne convertit par la chaîne vide en valeur `NULL` (qui représente, l'absence de valeur pour un attribut, dans une base de données).
+En revanche, SQLite convertit la valeur `None` en valeur `NULL`.
+
+Pour remédier à ce problème; l'on utilisera la syntaxe suivante (qui n'est autre qu'un `if... else` condensé sur une seule ligne).
+=======
 Or, SQLite ne convertit par la chaîne vide en valeur `NULL` (qui représente, l'absence de valeur).
 En revanche, SQLite convertit la valeur `None` en valeur `NULL`.
 
 Pour remédier à ce problème; l'on utilisera la syntaxe suivante :
+>>>>>>> 9a0fb2fced1f76870938e6dd1870038b615dcc32:Flask/Theorie/5-SQLite3.md
 
 ```python
 if request.method == 'POST':
     nom = request.form.get('nom') if request.form.get('nom') != '' else None
 ```
+<<<<<<< HEAD:Theorie/5-SQLite3.md
+**Rem** : dans notre exemple; on utilise un requête `POST`, transmise depuis un formulaire qui contient un champ 'nom', dont on veut récupérer la valeur.
+
+=======
 **Rem** : dans notre exemple; on utilise une `POST`, transmise depuis un formulaire qui contient un champ 'nom', dont on veut récupérer la valeur.
+>>>>>>> 9a0fb2fced1f76870938e6dd1870038b615dcc32:Flask/Theorie/5-SQLite3.md

@@ -5,7 +5,7 @@ Avant de commencer le projet; assurez-vous :
 # Configuration du dépôt Git
 ## Initialisation du dépôt et association avec Github
 Les commandes suivantes à exécuter en *ligne de commande*.
-Vous trouverez les explications relatives à celles-ci dans la [[0-Presentation du contenu|documentation relative à git]].
+Vous trouverez les explications relatives à celles-ci dans la [[../../../Outils/Git/0-Presentation du contenu|documentation relative à git]].
 **Rem** : Vous pouvez également utiliser l'outil graphique que vous voulez pour gérer vos dépôts.  Cette documentation est juste une aide pour vous aider à démarrer dans le projet; et vous introduire aux commandes de base de Git via la ligne de commande.
 
 Les commandes suivantes sont à exécuter au départ de répertoire `Documents\5tt\web\projet` 
@@ -14,9 +14,9 @@ Les commandes suivantes sont à exécuter au départ de répertoire `Documents\5
    `git remote add orign <url du dépôt>`
    **Rem** : vous trouverez l'URL du dépôt en :
 	1. vous connectant à Github
-	2. Aller sur Code : ![[Pasted image 20251117123920.png]]
+	2. Aller sur Code : ![[attachments/Pasted image 20251117123920.png]]
 	3. Copiant l'URL correspondant au dépôt du groupe
-	   ![[Pasted image 20251117124012.png]]
+	   ![[attachments/Pasted image 20251117124012.png]]
 
 
 ## Ajout d'un fichier .gitignore

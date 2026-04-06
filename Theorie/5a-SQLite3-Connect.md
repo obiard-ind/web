@@ -52,42 +52,16 @@ from flask import g   # Pour pouvoir utiliser l'objet g, il faut l'importer.
 DATABASE = 'instance/<nom_de_la_db>'  # Chemin vers le fichier de la DB
 def get_db():
     if 'db' not in g:
+	    # Crée une connexion à la DB et stocke celle-ci dans l'objet 'g'
         g.db = sqlite3.connect(DATABASE)
+        # Permet d'accéder aux résultats de la requête via le nom des attributs
+        g.db.row_factory = sqlite3.Row 
     return g.db
 ```
 **Rem** : on stockera les fichiers 'sensibles' dans un répertoire **instance/** de notre projet.
 **Attn** : on veillera à NE JAMAIS transmettre ces informations sensibles sur Github.  On les sauvegardera indépendamment dans un espace sécurisé.
 
 Désormais, quand on aura besoin d'accéder à la base de données; il nous suffira d'appeler la fonction `get_db()`; laquelle nous renverra un objet *connexion* vers celle-ci.
-
-## 3. Créer un objet 'curseur'
-Après avoir établit une connexion à notre base de données; nous aurons besoin d'un *objet* nous permettant :
-- d'**exécuter des requêtes** (création, modification, sélection)
-- d'en récupérer et d'en **parcourir les resultats**.
-Cet objet est appelé un **curseur**, et nous le créerons en appelant la méthode `cursor()` sur l'objet 'connexion' que nous venons de créer.
-
-*Création du 'curseur' au départ de la connexion vers notre DB*
-```python
-conn = get_db()   # On fait appel à notre fonction de connexion définie plus haut.
-cur = conn.cursor()
-```
-## 4. Exécuter notre requête
-Après avoir défini notre objet *curseur*, on peut à présent lui passer des requêtes à exécuter.
-L'exécution de notre requête se fait toujours en deux temps :
-1. On passe des requêtes à notre objet **curseur** => méthode : `.execute()`
-2. On valide ces requêtes via l'objet **connexion** => méthode : `.commit()`
-**Rem** : on peut passer plusieurs requêtes à l'objet 'curseur'; avant de ne valider qu'une seule fois l'ensemble des requêtes passées.
-
-```python
-try:
-    cur.execute("INSERT INTO utilisateurs (username,passowrd) VALUES (?,?)",(username,hashed_password))
-    conn.commit()
-except sqlite3.Error as e:
-    conn.rollback()
-```
-
-**Note 1** : on notera la syntaxe un peu particulière de la requête `INSERT INTO`; laquelle remplace les valeurs par des `?` dans la chaîne qui correspond à la requête; suvie ensuite les valeurs qui y seront substituées.  Cette technique permet de prévenir une technique de hacking, appelée [SQL injection](https://www.w3schools.com/sql/sql_injection.asp)
-**Note 2** : on placera l'exécution de la requête dans un block `try... except` qui permettra, en cas d'erreur lors de l'exécution, d'annuler tous les changements liés à ce `commit`.
 
 ## Quelques remarques additionnelles 
 ### Champs de formulaire vides et valeur `NULL`
@@ -102,6 +76,5 @@ if request.method == 'POST':
     nom = request.form.get('nom') if request.form.get('nom') != '' else None
 ```
 **Rem** : dans notre exemple; on utilise un requête `POST`, transmise depuis un formulaire qui contient un champ 'nom', dont on veut récupérer la valeur.
-
 
 
